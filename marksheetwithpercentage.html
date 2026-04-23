@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<script src="jquery.js"></script>
+	<style type="text/css">
+
+		.calcontainer{
+			border: 4px solid background;
+			border-radius: 15px;
+		}
+		
+		button{
+			width: 70px;
+			height: 50px; 
+			background-color: #d0ed9a;
+		}
+		.maininput{
+			width: 300px; height: 50px;
+
+		}
+		table{}
+	</style>
+
+	<script type="text/javascript">
+		function Calculate(val1){
+			var txtid = $("#hdncurrentlocation").val();
+			var bk= $("#" + txtid).val();
+			$("#" + txtid).val(bk+val1);
+		}
+
+		function setposition(id){
+			$("#hdncurrentlocation").val(id);
+
+		}
+
+		function operator(v){
+
+			$("#op1").val(v);
+		}
+	</script>
+
+	<style>
+		table{
+				font-size: 15px;
+				width: 80%;
+				text-align: left;
+				padding-bottom: 15px;
+				background-color: purple;
+		} 
+		table td, th{
+			padding-bottom: 10px;
+			padding-top: 10px;
+			border-bottom: 1px solid black;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	
+<div style="width: 100%;"; align="center">
+		<div style="width: 80%; border: 1px solid black;height: 600px; background-color: skyblue;">
+			<b>Student Name</b>: Muhammad Ali<br/>
+			<b>Program</b>: ICS<br/>
+
+			<table cellpadding="0" cellspacing="0" border="0">	
+					<tr>	
+							<th>Sr#</th>
+							<th>Subject</th>
+							<th>Marks</th>
+							<td>percentage</td>
+							<td>grade</td>
+					</tr>
+					<tr>
+							<td>1</td>	
+							<td>CS</td>	
+							<td><input onchange="changemarks('csmarks')" type="number" id='csmarks'></td>
+							<td><input onchange="changemarks('csmarks')" type="number" id='csmarks'></td>
+							<td><input onchange="changemarks('csmarks')" type="number" id='csmarks'></td>	
+							
+
+					</tr>
+					<tr>
+							<td>2</td>	
+							<td>math</td>	
+							<td><input onchange="changemarks('mathmarks')" type="number" id='mathmarks'></td>	
+							<td><input onchange="changemarks('csmarks')" type="number" id='mathmarks'></td>
+							<td><input onchange="changemarks('csmarks')" type="number" id='mathmarks'></td>
+					</tr>
+					<tr>
+							<td>3</td>	
+							<td>English</td>	
+							<td><input  onchange="changemarks('engmarks')" type="number" id='engmarks'></td>
+							<td><input onchange="changemarks('cs')" type="number" id='engmarks'></td>
+							<td><input onchange="changemarks('csmarks')" type="number" id='enggrade'></td>
+
+					</tr>
+					<tr>
+							<td>4</td>	
+							<td>Urdu</td>	
+							<td><input  onchange="changemarks('urdumarks')" type="number" id='urdumarks'></td>	
+							<td><input onchange="changemarks('csmarks')" type="number" id='urdupercentage'></td>
+							<td><input onchange="changemarks('csmarks')" type="number" id='urdugrade'></td>
+
+							
+					</tr>
+
+					<tr>
+							<td></td>	
+							<td>Total Marks</td>	
+							<td>
+								
+
+							</td>	
+					</tr>
+
+
+			</table>	
+				<br/>
+
+			<table cellpadding="0" cellspacing="0" border="0">	
+					<tr>
+							<td>Total Marks</td>	
+							<td>
+								<input type="text" readonly id="totalMakrs" name="">
+							</td>	
+					</tr>
+					<tr>
+							<td>Percentage</td>	
+							<td>
+								<input type="text" readonly id="perMakrs" name="">
+
+							</td>	
+					</tr>
+					<tr>
+							<td>Grade</td>	
+							<td>
+								<input type="text" readonly id="gradeMakrs" name="">
+
+							</td>	
+					</tr>
+
+
+			</table>	
+<br/>
+<button type="button" onclick="calculate()"> Calculate</button>
+
+
+		</div>
+</div>
+
+
+<script type="text/javascript">
+			function calculate(){
+					var cs = $("#csmarks").val();
+					cs = Number(cs);
+					var math = $("#mathmarks").val();
+					math = Number(math);
+					var eng = $("#engmarks").val();
+					eng = Number(eng);
+					var urdu = $("#urdumarks").val();
+					urdu = Number(urdu);
+
+					var total = cs+eng+math+urdu;
+					alert(total);
+					c
+					$("#gradeMakrs").val(grade);
+				
+        alert(total);
+					$("#totalMakrs").val(total);
+					var per = (total/400)*100;
+					$("#perMakrs").val(per);
+					var grade="";
+					if(per>=80){
+						grade="A";
+					} else if(per>=70){
+						grade="B";	
+					} else if(per>=60){
+						grade="C";	
+					} else if(per>=50){
+						grade="D";	
+					} else {
+						grade="F";	
+					}
+
+			}
+
+			function grade()
+			{
+					alert(tid);
+					$("#totalMakrs").val(total);
+					var per = (total/400)*100;
+					$("#perMakrs").val(per);
+					var grade="";
+					if(per>=80){
+						grade="A";
+					} else if(per>=70){
+						grade="B";	
+					} else if(per>=60){
+						grade="C";	
+					} else if(per>=50){
+						grade="D";	
+					} else {
+						grade="F";	
+					}
+
+			}
+
+</script>
+
+
+</body>
+</html>
