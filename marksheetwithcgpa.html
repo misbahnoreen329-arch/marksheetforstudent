@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<style>
+		table{
+			font-size: 15px;
+			width: 90%;
+			text-align: left;
+			padding-bottom: 10px;
+            background-color: skyblue;
+}	
+
+	table td, th{
+			padding: 8px;
+			border-bottom: 1px solid black;
+		}
+
+		input{
+			width: 80px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<div style="width: 100%; text-align:center;">
+		<div style="width: 90%; border: 1px solid black; padding: 10px;">
+
+			<b>Student Name</b>: Muhammad Ali<br/>
+			<b>Program</b>: ICS<br/><br>
+
+			<table cellpadding="0" cellspacing="0" border="0">	
+					<tr>	
+							<th>Sr#</th>
+							<th>Subject</th>
+							<th>Marks</th>
+							<th>Percentage</th>
+							<th>Grade</th>
+							<th>GP</th>
+					</tr>
+
+					<tr>
+							<td>1</td>	
+							<td>CS</td>	
+							<td><input onchange="calcSingle('cs')" type="number" id="csmarks"></td>
+							<td><input readonly id="csper"></td>
+							<td><input readonly id="csgrade"></td>
+							<td><input readonly id="csgp"></td>
+					</tr>
+
+					<tr>
+							<td>2</td>	
+							<td>Math</td>	
+							<td><input onchange="calcSingle('math')" type="number" id="mathmarks"></td>
+							<td><input readonly id="mathper"></td>
+							<td><input readonly id="mathgrade"></td>
+							<td><input readonly id="mathgp"></td>
+					</tr>
+
+					<tr>
+							<td>3</td>	
+							<td>English</td>	
+							<td><input onchange="calcSingle('eng')" type="number" id="engmarks"></td>
+							<td><input readonly id="engper"></td>
+							<td><input readonly id="enggrade"></td>
+							<td><input readonly id="enggp"></td>
+					</tr>
+					
+					<tr>
+							<td>4</td>	
+							<td>Urdu</td>	
+							<td><input onchange="calcSingle('urdu')" type="number" id="urdumarks"></td>
+							<td><input readonly id="urduper"></td>
+							<td><input readonly id="urdugrade"></td>
+							<td><input readonly id="urdugp"></td>
+					</tr>
+
+			</table>	
+
+			<br>
+
+			<table cellpadding="0" cellspacing="0" border="0">	
+					<tr>
+							<td>Total Marks</td>	
+							<td><input type="text" readonly id="totalMarks"></td>
+					</tr>
+
+					<tr>
+							<td>Percentage</td>	
+							<td><input type="text" readonly id="perMarks"></td>
+					</tr>
+
+					<tr>
+							<td>Overall GPA</td>	
+							<td><input type="text" readonly id="overallGPA"></td>
+					</tr>
+
+					<tr>
+							<td>Remarks</td>	
+							<td><input type="text" readonly id="remarks"></td>
+					</tr>
+
+			</table>	
+
+			<br/>
+			<button type="button" onclick="calculate()"> Calculate </button>
+
+		</div>
+</div>
+
+
+<script>
+//----------- FUNCTION: single subject calculation ----------------//
+function calcSingle(sub){
+
+	let marks = Number($("#" + sub + "marks").val());
+	let per = (marks / 100) * 100;
+	let grade = "";
+	let gp = 0;
+
+	if(marks >= 80){ grade="A"; gp=4.0; }
+	else if(marks >= 70){ grade="B"; gp=3.0; }
+	else if(marks >= 60){ grade="C"; gp=2.0; }
+	else if(marks >= 50){ grade="D"; gp=1.0; }
+	else { grade="F"; gp=0; }
+
+	$("#" + sub + "per").val(per.toFixed(2) + "%");
+	$("#" + sub + "grade").val(grade);
+	$("#" + sub + "gp").val(gp);
+}
+
+//----------- FUNCTION: final calculation ----------------//
+function calculate(){
+
+	let cs = Number($("#csmarks").val());
+	let math = Number($("#mathmarks").val());
+	let eng = Number($("#engmarks").val());
+	let urdu = Number($("#urdumarks").val());
+
+	let total = cs + math + eng + urdu;
+	$("#totalMarks").val(total);
+
+	let per = (total / 400) * 100;
+	$("#perMarks").val(per.toFixed(2) + "%");
+
+	// Average GPA
+	let g1 = Number($("#csgp").val());
+	let g2 = Number($("#mathgp").val());
+	let g3 = Number($("#enggp").val());
+	let g4 = Number($("#urdugp").val());
+
+	let avg = (g1 + g2 + g3 + g4) / 4;
+	$("#overallGPA").val(avg.toFixed(2));
+
+	// Remarks
+	let remark = "";
+	if(avg >= 3.5) remark = "Excellent";
+	else if(avg >= 3.0) remark = "Very Good";
+	else if(avg >= 2.0) remark = "Good";
+	else if(avg >= 1.0) remark = "Pass";
+	else remark = "Fail";
+
+	$("#remarks").val(remark);
+}
+
+</script>
+
+</body>
+</html>
